@@ -56,11 +56,7 @@
     if (!sec || !chaps.length || !full || !window.matchMedia("(min-width: 1000px)").matches) return;
     sec.classList.add("is-built");
     var vids = $$(".mframe__v"), tl = $$(".mtl li"), cur = -1, live = false;
-    var play = function (v) {
-      if (!v.dataset.ready) { v.src = (v.canPlayType && v.canPlayType('video/webm; codecs="vp9"')) ? v.dataset.webm : v.dataset.mp4; v.poster = v.dataset.poster || ""; v.dataset.ready = "1"; }
-      v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {});
-    };
-    vids.forEach(function (v) { if (v.dataset.poster) v.poster = v.dataset.poster; });
+    var play = function (v) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
     var set = function (i) {
       if (i === cur) return; cur = i;
       chaps.forEach(function (c, k) { c.classList.toggle("is-on", k === i); });
@@ -80,9 +76,8 @@
   /* ---------------- Sanfte Fassung ---------------- */
   function soft() {
     $$(".split").forEach(function (h) { gsap.set(h, { visibility: "visible" }); });
-    var below = $$("[data-reveal]").filter(function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.92; });
-    gsap.set(below, { opacity: 0 });
-    ScrollTrigger.batch(below, {
+    gsap.to($$("[data-hero]"), { opacity: 1, duration: 0.8, stagger: 0.08, ease: "none" });
+    ScrollTrigger.batch("[data-reveal]", {
       start: "top 92%", once: true,
       onEnter: function (batch) { gsap.to(batch, { opacity: 1, duration: 0.7, stagger: 0.05, ease: "none", overwrite: "auto" }); }
     });
@@ -108,13 +103,13 @@
       /* Parallax: Banner laeuft beim Scrollen langsamer als der Inhalt */
       gsap.to(media, { yPercent: 18, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
       gsap.to(".hero__ground", { y: -40, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-      /* Schlagzeile, Text und Knoepfe im Hero laufen per CSS-Keyframes ein (siehe site.css) */
+      gsap.to($$("[data-hero]", hero), { opacity: 1, y: 0, duration: 1, stagger: 0.1, delay: 0.55, ease: EASE });
     }
 
     /* Ueberschriften: Zeile fuer Zeile aus einer Maske (Hero beim Laden, sonst beim Scrollen) */
-    $$(".split").filter(function (h) { return !h.closest(".hero"); }).forEach(function (h) {
+    $$(".split").forEach(function (h) {
       if (!hasSplit) { gsap.set(h, { visibility: "visible" }); return; }
-      var inHero = false;
+      var inHero = !!h.closest(".hero");
       SplitText.create(h, {
         type: "lines", mask: "lines", autoSplit: true,
         onSplit: function (self) {
@@ -127,9 +122,7 @@
     });
 
     /* Karten und Absaetze: gestaffelt von unten */
-    var below = $$("[data-reveal]").filter(function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.92; });
-    gsap.set(below, { opacity: 0, y: 36 });
-    ScrollTrigger.batch(below, {
+    ScrollTrigger.batch("[data-reveal]", {
       start: "top 90%", once: true,
       onEnter: function (batch) { gsap.to(batch, { opacity: 1, y: 0, duration: 1, stagger: 0.09, ease: EASE, overwrite: "auto" }); }
     });
@@ -195,5 +188,5 @@
     try { if (reduce) soft(); else full(); }
     catch (e) { root.classList.remove("anim"); root.classList.remove("anim-soft"); if (window.console) console.error(e); }
   };
-  go();  /* sofort; SplitText (autoSplit) teilt nach dem Laden der Schrift neu */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
 })();
