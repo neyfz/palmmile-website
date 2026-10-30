@@ -3,101 +3,316 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palm Mile</title>
-<meta name="description" content="Palm Mile turns GTA fail clips sent in by the community into videos, and pays out monthly prizes.">
-<style>
-  :root{
-    --nacht:#140a2e; --tief:#210e5e; --violett:#572abe;
-    --magenta:#b72686; --orange:#ff5d2b;
-    --text:#f2e9ff; --leise:#b9a8d6; --kante:#32215e;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--nacht); color:var(--text);
-    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",
-         Roboto,Helvetica,Arial,sans-serif;
-  }
-  .streifen{height:6px;background:linear-gradient(90deg,
-    var(--tief),var(--violett),var(--magenta),var(--orange));}
-  .huelle{max-width:720px;margin:0 auto;padding:0 16px 72px}
-  header{padding:56px 0 8px}
-  h1{
-    margin:0;font-size:44px;line-height:1.1;letter-spacing:-.02em;
-    background:linear-gradient(90deg,var(--violett),
-      var(--magenta),var(--orange));
-    -webkit-background-clip:text;background-clip:text;
-    color:transparent;
-  }
-  .unterzeile{color:var(--leise);margin:10px 0 0;font-size:18px}
-  h2{
-    font-size:20px;margin:40px 0 10px;
-    padding-top:22px;border-top:1px solid var(--kante);
-  }
-  p{margin:0 0 14px}
-  ul{margin:0 0 14px;padding-left:20px}
-  li{margin:6px 0}
-  a{color:var(--orange)}
-  a:hover{color:var(--magenta)}
-  .kasten{
-    border:1px solid var(--kante);border-radius:10px;
-    padding:18px 20px;margin:22px 0;background:#1a1038;
-  }
-  .kasten p:last-child{margin-bottom:0}
-  footer{
-    margin-top:48px;padding-top:20px;
-    border-top:1px solid var(--kante);
-    color:var(--leise);font-size:14px;
-  }
-  footer a{margin-right:18px}
-  @media(max-width:520px){h1{font-size:34px}header{padding-top:40px}}
-</style>
+<title>Palm Mile &middot; Your GTA clips. Our videos. Your name on screen.</title>
+<meta name="description" content="Palm Mile turns the best GTA moments players record into long videos and credits every player by name. Join the community on Discord.">
+<link rel="canonical" href="https://palmmile.com/">
+<meta name="theme-color" content="#0d0413">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Palm Mile">
+<meta property="og:title" content="Palm Mile · Your GTA clips. Our videos. Your name on screen.">
+<meta property="og:description" content="Palm Mile turns the best GTA moments players record into long videos and credits every player by name. Join the community on Discord.">
+<meta property="og:url" content="https://palmmile.com/">
+<meta property="og:image" content="https://palmmile.com/assets/img/og-banner.2cdf8dd7.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Palm Mile banner: palm trees and the words PALM MILE against a sunset">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Palm Mile · Your GTA clips. Our videos. Your name on screen.">
+<meta name="twitter:description" content="Palm Mile turns the best GTA moments players record into long videos and credits every player by name. Join the community on Discord.">
+<meta name="twitter:image" content="https://palmmile.com/assets/img/og-banner.2cdf8dd7.jpg">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/archivo-latin-wdth-normal.e3a28ead.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat-latin-wght-normal.06b16db7.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/img/hero-poster-2560.85b266a3.webp" imagesrcset="/assets/img/hero-poster-1280.8ebde36b.webp 1280w, /assets/img/hero-poster-2560.85b266a3.webp 2560w" imagesizes="100vw" fetchpriority="high">
+<link rel="stylesheet" href="/assets/css/site.8d9c640d.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');var fm=window.__fm||/[?&]motion=full/.test(location.search);if(fm)d.classList.add('fm');var pm=/[?&]palette=([abc])/.exec(location.search);d.setAttribute('data-palette',pm?pm[1]:'a');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches&&!fm;d.classList.add(rm?'anim-soft':'anim');setTimeout(function(){if(!window.__animOk){d.classList.remove('anim');d.classList.remove('anim-soft')}},4500);})();</script>
 </head>
-<body>
-<div class="streifen"></div>
-<div class="huelle">
-
-<header>
-  <h1>Palm Mile</h1>
-  <p class="unterzeile">We build GTA fail videos out of clips sent in
-  by our community, and we pay out prizes for them every month.</p>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
+<div class="fx" aria-hidden="true"><div class="fx__m"><div class="fx__b fx__b--1"></div></div><div class="fx__m"><div class="fx__b fx__b--2"></div></div><div class="fx__m"><div class="fx__b fx__b--3"></div></div></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="top" id="top-ui">
+<div class="bar"><span class="bar__long">Video 2 premieres Wednesday, Nov 4</span><span class="bar__short">Video 2: Wed, Nov 4</span><span class="bar__sep" aria-hidden="true">·</span><a href="https://discord.gg/palmmile" rel="noopener noreferrer">Join the Discord</a></div>
+<header class="nav nav--clear" id="nav">
+<button class="nav__burger" id="menu-toggle" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+<a class="nav__brand" href="/" aria-label="Palm Mile, home"><img src="/assets/img/logo-80.a76617c5.webp" width="40" height="40" alt=""><span class="nav__word">Palm Mile</span></a>
+<nav class="nav__main" aria-label="Main"><ul class="nav__list">
+<li><a href="#videos">Videos</a><button class="mega-btn" id="mega-btn" type="button" aria-expanded="false" aria-controls="mega" aria-label="Show the videos menu"><span aria-hidden="true">&#9662;</span></button></li>
+<li><a href="/how-it-works.html">How it works</a></li>
+<li><a href="/credits/">Credits</a></li>
+<li><a href="/socials.html">Socials</a></li>
+<li><a href="/rules.html">Rules</a></li>
+</ul></nav>
+<div class="nav__cta"><a class="btn btn--submit btn--sm" href="https://discord.gg/palmmile" target="_blank" rel="noopener">Submit your clip<span class="sr"> (opens our Discord in a new tab)</span></a><a class="btn btn--discord btn--sm" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a></div>
+<div class="mega" id="mega" hidden><div class="mega__in"><div class="mega__head"><p class="label label--neon">The videos</p><span><a href="https://www.youtube.com/@PalmMile" rel="noopener noreferrer">YouTube channel &rarr;</a>&nbsp;&nbsp;&nbsp;<a href="/credits/">Every credit list &rarr;</a></span></div><ul class="mega__grid"><li><a class="mega__card" href="https://www.youtube.com/watch?v=xTA1CiIUrEk" rel="noopener noreferrer"><img src="/assets/img/thumb-1-640.aedaaaed.webp" width="640" height="360" alt="Thumbnail of Palm Mile video 1: TOP 500 FUNNIEST GTA FAILS YOU HAVE TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"><span><strong>TOP 500 FUNNIEST GTA FAILS</strong><em>Video 1 · Watch · 1:32:53</em></span></a></li><li><a class="mega__card" href="/credits/video-2.html"><img src="/assets/img/thumb-2-640.9c7960ad.webp" width="640" height="360" alt="Thumbnail of Palm Mile video 2: TOP 500 FUNNIEST GTA FAILS YOU NEED TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"><span><strong>TOP 500 FUNNIEST GTA FAILS</strong><em>Video 2 · Premiere Wed, Nov 4</em></span></a></li><li><a class="mega__card" href="https://www.youtube.com/watch?v=l56M--ZB6r0" rel="noopener noreferrer"><img src="/assets/img/thumb-3-640.7be78499.webp" width="640" height="360" alt="Thumbnail of Palm Mile video 3: TOP 500 EPIC MOMENTS YOU HAVE TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"><span><strong>TOP 500 EPIC MOMENTS</strong><em>Video 3 · Watch · 1:07:58</em></span></a></li><li><a class="mega__card" href="/credits/video-4.html"><img src="/assets/img/thumb-4-640.4b389d9a.webp" width="640" height="360" alt="Thumbnail of Palm Mile video 4: TOP 500 EPIC MOMENTS YOU NEED TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"><span><strong>TOP 500 EPIC MOMENTS</strong><em>Video 4 · Premiere Wed, Nov 11</em></span></a></li></ul></div></div>
 </header>
-
-<h2>What this is</h2>
-<p>Palm Mile is a Discord community around GTA&nbsp;V and GTA&nbsp;VI.
-Members send in their best fail clips. The ones we use go into our
-videos, credited with the name the sender chose.</p>
-<p>Every month we pay out prizes: for the clips that made it into a
-video, for the people who brought others in, and in a draw that every
-clean post takes part in.</p>
-
-<div class="kasten">
-  <p><strong>Taking part costs nothing.</strong> No purchase, no
-  subscription, no payment at any point. The full rules, amounts and
-  thresholds are published in the server and in the
-  <a href="rules.html">Terms of Participation</a>.</p>
 </div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+<ul class="drawer__main"><li><a class="drawer__stage" style="--i:0" href="#videos">Videos<span aria-hidden="true">&rarr;</span></a></li><li><a class="drawer__stage" style="--i:1" href="/how-it-works.html">How it works<span aria-hidden="true">&rarr;</span></a></li><li><a class="drawer__stage" style="--i:2" href="/credits/">Credits<span aria-hidden="true">&rarr;</span></a></li><li><a class="drawer__stage" style="--i:3" href="/socials.html">Socials<span aria-hidden="true">&rarr;</span></a></li><li><a class="drawer__stage" style="--i:4" href="/rules.html">Rules<span aria-hidden="true">&rarr;</span></a></li></ul>
+<div class="drawer__cta drawer__stage" style="--i:5"><a class="btn btn--discord btn--lg" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a><a class="btn btn--submit btn--lg" href="https://discord.gg/palmmile" target="_blank" rel="noopener">Submit your clip<span class="sr"> (opens our Discord in a new tab)</span></a></div>
+<div class="drawer__sub drawer__stage" style="--i:6"><a href="/privacy.html">Privacy</a><a href="/imprint.html">Imprint</a></div>
+<ul class="drawer__vids drawer__stage" style="--i:7"><li><a href="/credits/video-1.html" aria-label="Credits for video 1"><img src="/assets/img/thumb-1-640.aedaaaed.webp" width="640" height="360" alt="Thumbnail of video 1" loading="lazy" decoding="async"></a></li><li><a href="/credits/video-2.html" aria-label="Credits for video 2"><img src="/assets/img/thumb-2-640.9c7960ad.webp" width="640" height="360" alt="Thumbnail of video 2" loading="lazy" decoding="async"></a></li><li><a href="/credits/video-3.html" aria-label="Credits for video 3"><img src="/assets/img/thumb-3-640.7be78499.webp" width="640" height="360" alt="Thumbnail of video 3" loading="lazy" decoding="async"></a></li><li><a href="/credits/video-4.html" aria-label="Credits for video 4"><img src="/assets/img/thumb-4-640.4b389d9a.webp" width="640" height="360" alt="Thumbnail of video 4" loading="lazy" decoding="async"></a></li></ul>
+<div class="drawer__social drawer__stage" style="--i:8"><a href="https://www.tiktok.com/@palmmile" rel="noopener noreferrer">TikTok</a><a href="https://www.instagram.com/palmmile" rel="noopener noreferrer">Instagram</a><a href="https://www.snapchat.com/add/palmmile" rel="noopener noreferrer">Snapchat</a><a href="https://www.youtube.com/@PalmMile" rel="noopener noreferrer">YouTube</a><a href="https://x.com/PalmMile" rel="noopener noreferrer">X</a><a href="https://www.reddit.com/user/PalmMile" rel="noopener noreferrer">Reddit</a></div>
+</div>
+<div class="tone" aria-hidden="true"></div>
+<main id="main">
+<section class="hero" id="top" data-tone="#07010C" aria-labelledby="hero-title">
+<div class="hero__banner">
+<img class="poster" src="/assets/img/hero-poster-2560.85b266a3.webp" srcset="/assets/img/hero-poster-1280.8ebde36b.webp 1280w, /assets/img/hero-poster-2560.85b266a3.webp 2560w" sizes="100vw" width="2560" height="592" alt="" fetchpriority="high">
+<video data-autoplay muted loop playsinline preload="none" width="2560" height="592" aria-hidden="true">
+<source src="/assets/video/hero-1280.d5d2cdec.webm" type="video/webm" media="(max-width: 760px)"><source src="/assets/video/hero-1280.0dbcc3d6.mp4" type="video/mp4" media="(max-width: 760px)">
+<source src="/assets/video/hero-2560.cc677e82.webm" type="video/webm"><source src="/assets/video/hero-2560.5b0fe377.mp4" type="video/mp4"></video>
+</div>
+<div class="hero__ground">
+<p class="label label--neon" data-hero style="margin-inline:auto">GTA V and GTA VI community</p>
+<h1 class="split" id="hero-title">Your GTA clips. Our videos.<br class="br-d"> <em class="hl">Your name on screen.</em></h1>
+<p class="hero__sub" data-hero>Long GTA videos built from the moments players record. Every clip carries the name of the player behind it.</p>
+<div class="btn-row" data-hero><a class="btn btn--discord btn--lg btn--flow" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a><a class="btn btn--submit btn--lg" href="https://discord.gg/palmmile" target="_blank" rel="noopener">Submit your clip<span class="sr"> (opens our Discord in a new tab)</span></a></div>
+</div>
+</section>
+<div id="hero-end"></div>
 
-<h2>How prizes are paid</h2>
-<ul>
-  <li>Money is paid in US dollars by PayPal.</li>
-  <li>If you are 18 or older, you choose between money and Discord
-      Nitro. Under 18, you receive Nitro, because PayPal needs an
-      account of your own.</li>
-  <li>Every payout is listed publicly in our
-      <code>#hall-of-winners</code> channel, with the amount and
-      whether the winner confirmed that it arrived.</li>
+<section class="sec about center" id="about" data-tone="#0b0320" aria-labelledby="about-h">
+<div class="wrap">
+<p class="label label--neon" data-reveal>What is Palm Mile</p>
+<h2 class="split" id="about-h">The best GTA moments, <em class="hl">recorded by players.</em></h2>
+<p class="lead" data-reveal><strong>Palm Mile</strong> builds long GTA videos out of moments that players have recorded: the fails, the epic plays and everything in between.</p>
+<p class="lead" data-reveal>Every clip carries the name of the player behind it. And in our Discord, the community runs <span class="hl2">monthly rewards</span> for the people who send clips in.</p>
+<ul class="tiles">
+<li class="tile neon" data-reveal><span class="tile__k" aria-hidden="true">01</span><h3>Long GTA videos built from players&rsquo; clips</h3><p>Hundreds of moments in one video, each one recorded by a player.</p></li>
+<li class="tile neon" data-reveal><span class="tile__k" aria-hidden="true">02</span><h3>Every clip carries the player&rsquo;s name</h3><p>Named in the video and in a public credit list for every video.</p></li>
+<li class="tile neon" data-reveal><span class="tile__k" aria-hidden="true">03</span><h3>Monthly rewards for the community</h3><p>Three monthly boards in our Discord. Taking part is free.</p></li>
 </ul>
-
-<h2>Contact</h2>
-<p>Questions about the contest, a prize, or your data:<br>
-<a href="mailto:contact@palmmile.com">contact@palmmile.com</a></p>
-
-<footer>
-  <a href="privacy.html">Privacy</a>
-  <a href="rules.html">Terms of Participation</a>
-  <a href="imprint.html">Imprint</a>
-</footer>
-
 </div>
+</section>
+
+<div class="marquee" role="group" aria-label="Top 500. Fails. Epic moments. Every player credited. Free to join."><div class="marquee__track"><div class="marquee__group" aria-hidden="true"><span>Top 500</span><span>Fails</span><span>Epic moments</span><span>Every player credited</span><span>Free to join</span><span>Top 500</span><span>Fails</span><span>Epic moments</span><span>Every player credited</span><span>Free to join</span></div><div class="marquee__group" aria-hidden="true"><span>Top 500</span><span>Fails</span><span>Epic moments</span><span>Every player credited</span><span>Free to join</span><span>Top 500</span><span>Fails</span><span>Epic moments</span><span>Every player credited</span><span>Free to join</span></div></div></div>
+
+<section class="sec" id="numbers" data-tone="#07010C" aria-labelledby="numbers-h">
+<div class="wrap center">
+<p class="label label--neon" data-reveal>In numbers</p>
+<h2 class="split" id="numbers-h">Built from <em class="hl">your clips.</em></h2>
+<ul class="stats">
+<li class="stat neon" data-reveal><span class="stat__num"><span class="count" data-to="4">4</span></span><span class="stat__lab">Videos</span></li>
+<li class="stat neon" data-reveal><span class="stat__num"><span class="count" data-to="2000">2,000</span></span><span class="stat__lab">Clips, each one credited</span></li>
+<li class="stat neon" data-reveal><span class="stat__num"><span class="count" data-to="5">5</span><small>h</small> <span class="count" data-to="19">19</span><small>min</small></span><span class="stat__lab">Total runtime</span></li>
+<li class="stat neon" data-reveal><span class="stat__num"><span class="count" data-to="425">425</span>&ndash;<span class="count" data-to="459">459</span></span><span class="stat__lab">Players named per video</span></li>
+</ul>
+</div>
+</section>
+
+<section class="sec" id="videos" data-tone="#07010C" aria-labelledby="videos-h">
+<div class="wrap">
+<div class="sech">
+<div><p class="label label--neon" data-reveal>The videos</p><h2 class="split" id="videos-h">500 moments per video. <em class="hl">Every name credited.</em></h2></div>
+<div data-reveal><p style="margin:0 0 1.1rem">Fails and epic moments from GTA, each video with a public credit list of every player in it.</p><a class="btn btn--yt" href="https://www.youtube.com/@PalmMile" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Watch on YouTube</a></div>
+</div>
+<ul class="vcards" id="vcards">
+<li class="vcard neon" data-reveal>
+<a class="vcard__media" href="https://www.youtube.com/watch?v=xTA1CiIUrEk" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src="/assets/img/thumb-1-640.aedaaaed.webp" srcset="/assets/img/thumb-1-640.aedaaaed.webp 640w, /assets/img/thumb-1-1280.b31de524.webp 1280w" sizes="(max-width:700px) 84vw, (max-width:1100px) 46vw, 290px" width="640" height="360" alt="Thumbnail of Palm Mile video 1: TOP 500 FUNNIEST GTA FAILS YOU HAVE TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"></a>
+<div class="vcard__body">
+<ul class="chips"><li class="chip">1:32:53</li><li class="chip">459 credited</li></ul>
+<h3>TOP 500 FUNNIEST GTA FAILS</h3>
+<p class="vcard__meta">Video 1 · Fails</p>
+<div class="vcard__links"><a class="yt" href="https://www.youtube.com/watch?v=xTA1CiIUrEk" rel="noopener noreferrer">Watch on YouTube<span class="sr"> (video 1)</span></a><a href="/credits/video-1.html">Credits<span class="sr"> for video 1</span></a></div>
+</div></li><li class="vcard neon" data-reveal>
+<div class="vcard__media"><img src="/assets/img/thumb-2-640.9c7960ad.webp" srcset="/assets/img/thumb-2-640.9c7960ad.webp 640w, /assets/img/thumb-2-1280.9040b23e.webp 1280w" sizes="(max-width:700px) 84vw, (max-width:1100px) 46vw, 290px" width="640" height="360" alt="Thumbnail of Palm Mile video 2: TOP 500 FUNNIEST GTA FAILS YOU NEED TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"></div>
+<div class="vcard__body">
+<ul class="chips"><li class="chip chip--soon">Premiere</li><li class="chip">1:33:06</li><li class="chip">432 credited</li></ul>
+<h3>TOP 500 FUNNIEST GTA FAILS</h3>
+<p class="vcard__meta">Video 2 · Fails</p>
+<p class="vcard__meta">Premiere on <time datetime="2026-11-04">Wednesday, Nov 4</time></p><div class="vcard__links"><a href="/credits/video-2.html">Credits<span class="sr"> for video 2</span></a></div>
+</div></li><li class="vcard neon" data-reveal>
+<a class="vcard__media" href="https://www.youtube.com/watch?v=l56M--ZB6r0" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src="/assets/img/thumb-3-640.7be78499.webp" srcset="/assets/img/thumb-3-640.7be78499.webp 640w, /assets/img/thumb-3-1280.4aafb513.webp 1280w" sizes="(max-width:700px) 84vw, (max-width:1100px) 46vw, 290px" width="640" height="360" alt="Thumbnail of Palm Mile video 3: TOP 500 EPIC MOMENTS YOU HAVE TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"></a>
+<div class="vcard__body">
+<ul class="chips"><li class="chip chip--new">New</li><li class="chip">1:07:58</li><li class="chip">425 credited</li></ul>
+<h3>TOP 500 EPIC MOMENTS</h3>
+<p class="vcard__meta">Video 3 · Epic moments</p>
+<div class="vcard__links"><a class="yt" href="https://www.youtube.com/watch?v=l56M--ZB6r0" rel="noopener noreferrer">Watch on YouTube<span class="sr"> (video 3)</span></a><a href="/credits/video-3.html">Credits<span class="sr"> for video 3</span></a></div>
+</div></li><li class="vcard neon" data-reveal>
+<div class="vcard__media"><img src="/assets/img/thumb-4-640.4b389d9a.webp" srcset="/assets/img/thumb-4-640.4b389d9a.webp 640w, /assets/img/thumb-4-1280.374b5dcb.webp 1280w" sizes="(max-width:700px) 84vw, (max-width:1100px) 46vw, 290px" width="640" height="360" alt="Thumbnail of Palm Mile video 4: TOP 500 EPIC MOMENTS YOU NEED TO WATCH BEFORE GTA 6" loading="lazy" decoding="async"></div>
+<div class="vcard__body">
+<ul class="chips"><li class="chip chip--soon">Premiere</li><li class="chip">1:05:27</li><li class="chip">431 credited</li></ul>
+<h3>TOP 500 EPIC MOMENTS</h3>
+<p class="vcard__meta">Video 4 · Epic moments</p>
+<p class="vcard__meta">Premiere on <time datetime="2026-11-11">Wednesday, Nov 11</time></p><div class="vcard__links"><a href="/credits/video-4.html">Credits<span class="sr"> for video 4</span></a></div>
+</div></li>
+</ul>
+<div class="vprog"><div class="vprog__bar" aria-hidden="true"><i id="vprog-bar"></i></div><div class="vprog__dots" id="vprog-dots"><button type="button" aria-label="Show video 1" aria-current="true"></button><button type="button" aria-label="Show video 2" aria-current="false"></button><button type="button" aria-label="Show video 3" aria-current="false"></button><button type="button" aria-label="Show video 4" aria-current="false"></button></div></div>
+</div>
+</section>
+
+<section class="sec making" id="making" data-tone="#12052e" aria-labelledby="making-h">
+<div class="wrap">
+<div class="sech">
+<div><p class="label label--neon" data-reveal>How a video is made</p><h2 class="split" id="making-h">From one clip to a <em class="hl">500-moment video.</em></h2></div>
+<p data-reveal>Every Palm Mile video follows the same build: four parts, one sunset look, and the name of every player on screen. Scroll through it.</p>
+</div>
+<div class="mscene">
+<div class="mstage" aria-hidden="true"><div class="mframe"><video class="mframe__v is-on" data-k="hook" muted loop playsinline preload="none" poster="/assets/img/making-hook.1af6d449.webp" width="1920" height="1080" aria-hidden="true"><source src="/assets/video/making-hook-m.607875dd.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-hook-m.0f40ac16.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-hook-d.55fc4945.webm" type="video/webm"><source src="/assets/video/making-hook-d.cb7486be.mp4" type="video/mp4"></video><video class="mframe__v" data-k="intro" muted loop playsinline preload="none" poster="/assets/img/making-intro.f748a0b4.webp" width="1500" height="844" aria-hidden="true"><source src="/assets/video/making-intro-m.32dbe870.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-intro-m.09033ba6.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-intro-d.800efa75.webm" type="video/webm"><source src="/assets/video/making-intro-d.b5864bb7.mp4" type="video/mp4"></video><video class="mframe__v" data-k="clips" muted loop playsinline preload="none" poster="/assets/img/making-clips.7ac22755.webp" width="1920" height="1080" aria-hidden="true"><source src="/assets/video/making-clips-m.77a11be7.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-clips-m.60e0dd98.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-clips-d.67125eaf.webm" type="video/webm"><source src="/assets/video/making-clips-d.ca7e11a4.mp4" type="video/mp4"></video><video class="mframe__v" data-k="tag" muted loop playsinline preload="none" poster="/assets/img/making-tag.8813a35c.webp" width="960" height="540" aria-hidden="true"><source src="/assets/video/making-tag-m.cfbf9855.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-tag-m.8f3ba9cf.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-tag-d.21557f3b.webm" type="video/webm"><source src="/assets/video/making-tag-d.98f09028.mp4" type="video/mp4"></video></div><ol class="mtl"><li data-i="0" class=is-on><span>Hook</span><i><b></b></i></li><li data-i="1"><span>Intro</span><i><b></b></i></li><li data-i="2"><span>500 moments</span><i><b></b></i></li><li data-i="3"><span>Name tag</span><i><b></b></i></li></ol></div>
+<ol class="mtext"><li class="mchap is-on" data-i="0"><span class="mchap__n">01 <small>/ 04</small></span><h3>Hook</h3><p>The first seconds decide everything. A Palm Mile video opens with some of its wildest moments, cut fast, before a single word is said.</p><figure class="mchap__fig"><video class="mchap__v" data-k="hook" muted loop playsinline preload="none" poster="/assets/img/making-hook.1af6d449.webp" width="1920" height="1080" aria-hidden="true"><source src="/assets/video/making-hook-m.607875dd.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-hook-m.0f40ac16.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-hook-d.55fc4945.webm" type="video/webm"><source src="/assets/video/making-hook-d.cb7486be.mp4" type="video/mp4"></video><figcaption class="sr">A fast-cut moment from the opening of a Palm Mile video</figcaption></figure></li><li class="mchap" data-i="1"><span class="mchap__n">02 <small>/ 04</small></span><h3>Intro</h3><p>A short intro follows: what the video is, who is behind it, and how your own clip can end up in the next one.</p><figure class="mchap__fig"><video class="mchap__v" data-k="intro" muted loop playsinline preload="none" poster="/assets/img/making-intro.f748a0b4.webp" width="1500" height="844" aria-hidden="true"><source src="/assets/video/making-intro-m.32dbe870.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-intro-m.09033ba6.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-intro-d.800efa75.webm" type="video/webm"><source src="/assets/video/making-intro-d.b5864bb7.mp4" type="video/mp4"></video><figcaption class="sr">The intro of a Palm Mile video showing the Palm Mile channel</figcaption></figure></li><li class="mchap" data-i="2"><span class="mchap__n">03 <small>/ 04</small></span><h3>500 moments</h3><p>The core: 500 clips, fails and epic plays, recorded by players across more than ten years of GTA. Each one picked, trimmed and put in order.</p><figure class="mchap__fig"><video class="mchap__v" data-k="clips" muted loop playsinline preload="none" poster="/assets/img/making-clips.7ac22755.webp" width="1920" height="1080" aria-hidden="true"><source src="/assets/video/making-clips-m.77a11be7.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-clips-m.60e0dd98.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-clips-d.67125eaf.webm" type="video/webm"><source src="/assets/video/making-clips-d.ca7e11a4.mp4" type="video/mp4"></video><figcaption class="sr">Three of the 500 moments in a Palm Mile video, back to back</figcaption></figure></li><li class="mchap" data-i="3"><span class="mchap__n">04 <small>/ 04</small></span><h3>Name tag</h3><p>Every clip carries a name tag in the Palm Mile sunset look, with the name of the player who recorded it. The same name goes into the public credit list.</p><figure class="mchap__fig"><video class="mchap__v" data-k="tag" muted loop playsinline preload="none" poster="/assets/img/making-tag.8813a35c.webp" width="960" height="540" aria-hidden="true"><source src="/assets/video/making-tag-m.cfbf9855.webm" type="video/webm" media="(max-width: 999px)"><source src="/assets/video/making-tag-m.8f3ba9cf.mp4" type="video/mp4" media="(max-width: 999px)"><source src="/assets/video/making-tag-d.21557f3b.webm" type="video/webm"><source src="/assets/video/making-tag-d.98f09028.mp4" type="video/mp4"></video><figcaption class="sr">A Palm Mile name tag flying in over a clip</figcaption></figure></li></ol>
+</div>
+</div>
+</section>
+
+<section class="sec" id="how" data-tone="#0b0320" aria-labelledby="how-h">
+<div class="wrap">
+<p class="label label--neon" data-reveal>How it works</p>
+<h2 class="split" id="how-h">Three steps. <em class="hl">No cost.</em></h2>
+<ol class="steps">
+<li class="step neon" data-reveal><span class="step__num" aria-hidden="true">01</span><p>Post your clip in <code>#submit-a-clip</code> on our Discord and tell us the name you want on screen.</p></li>
+<li class="step neon" data-reveal><span class="step__num" aria-hidden="true">02</span><p>If we use it, your name goes into the video and into the credit list.</p></li>
+<li class="step neon" data-reveal><span class="step__num" aria-hidden="true">03</span><p>Every month the community&rsquo;s monthly rewards are paid out, in the open.</p></li>
+</ol>
+<div class="btn-row" data-reveal><a class="btn btn--sun" href="/how-it-works.html">How it works in detail <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
+</div>
+</section>
+
+<section class="sec" id="rewards" data-tone="#14061f" aria-labelledby="rewards-h">
+<div class="wrap">
+<div class="sech">
+<div><p class="label label--neon" data-reveal>Rewards</p><h2 class="split" id="rewards-h">Monthly rewards, <em class="hl">three ways in.</em></h2></div>
+<p data-reveal>Everything is counted from what you post in our Discord. The current amounts and thresholds are posted in <code>#how-it-works</code>.</p>
+</div>
+<ul class="earn">
+<li class="neon" data-reveal><span class="earn__n">01</span><h3>Clip leaderboard</h3><p>Every clip we accept counts here, in the month it is accepted, whether it ends up in a video or not. Decided by performance, not by chance.</p></li>
+<li class="neon" data-reveal><span class="earn__n">02</span><h3>Inviter leaderboard</h3><p>Bring people who send in clips. They count for you in the month their first clip is accepted.</p></li>
+<li class="neon" data-reveal><span class="earn__n">03</span><h3>Monthly draw</h3><p>Every clean post earns a ticket. At the end of the month the draw is decided by chance, from all tickets of that month.</p></li>
+</ul>
+<h3 class="subhead" data-reveal>And beyond the boards</h3>
+<ul class="perks">
+<li class="neon" data-reveal><h4>When your clip is used</h4><p>You get a colour role, your clip gets a post in <code>#featured</code> that says where in the video it is, and your name goes into the credit list.</p></li>
+<li class="neon" data-reveal><h4>Month role</h4><p>Post regularly and the month role is yours. Once the prize pot is open, the draw hands out month roles as well.</p></li>
+<li class="neon" data-reveal><h4>Inviter roles</h4><p>Roles that show how many people you have brought into the community.</p></li>
+<li class="neon" data-reveal><h4>Hall of winners</h4><p>Every payout is listed in <code>#hall-of-winners</code> with the amount and whether it arrived. Your name appears there only if you choose to show it.</p></li>
+</ul>
+<ul class="paylines">
+<li data-reveal>Money is paid in US dollars by PayPal.</li>
+<li data-reveal>If you are 18 or older, you choose between money and Discord Nitro. Under 18, you receive Nitro.</li>
+<li data-reveal>Winners are announced in the Discord and also told by direct message.</li>
+</ul>
+<p class="free" data-reveal>Taking part costs nothing.</p>
+<p data-reveal><a href="/rules.html">Read the Terms of Participation</a></p>
+</div>
+</section>
+
+<section class="sec" id="submit" data-tone="#0b0320" aria-labelledby="submit-h">
+<div class="wrap split2">
+<div>
+<p class="label label--neon" data-reveal>Submit your clip</p>
+<h2 class="split" id="submit-h">Got a moment <em class="hl">we need to see?</em></h2>
+<p class="lead" data-reveal>Clips are submitted in our Discord. Hit the button, join, and post your clip in <code>#submit-a-clip</code> with the name you want on screen. If it makes the cut, it goes into the next video, with your name on it.</p>
+<div class="btn-row" data-reveal style="margin-top:2rem"><a class="btn btn--submit btn--lg" href="https://discord.gg/palmmile" target="_blank" rel="noopener">Submit your clip<span class="sr"> (opens our Discord in a new tab)</span></a></div>
+</div>
+<ol class="howto neon" data-reveal>
+<li><span class="hiw-n" aria-hidden="true">01</span>Join the Palm Mile Discord.</li>
+<li><span class="hiw-n" aria-hidden="true">02</span>Open <code>#submit-a-clip</code> and read the pinned example post.</li>
+<li><span class="hiw-n" aria-hidden="true">03</span>Post your clip and the name you want on screen.</li>
+</ol>
+</div>
+</section>
+
+<section class="sec" id="inside" data-tone="#0e0428" aria-labelledby="inside-h">
+<div class="wrap split2 inside">
+<div>
+<p class="label label--neon" data-reveal>Inside the Discord</p><h2 class="split" id="inside-h">Where the <em class="hl">clips come in.</em></h2>
+<p class="lead" data-reveal>Clips are posted, reviewed and counted in our Discord.</p>
+<p class="lead" data-reveal>The monthly boards and every payout live there too, <span class="hl2">in the open.</span></p>
+<div class="btn-row" data-reveal style="margin-top:1.75rem"><a class="btn btn--discord btn--lg" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a></div>
+</div>
+<div class="dstack" data-reveal><figure class="dwin" style="--i:0"><span class="dtag">Start here</span><div class="dwin__bar"><i></i><i></i><i></i><span># welcome</span></div><img src="/assets/img/discord-welcome.2d84404a.webp" width="360" height="454" alt="The #welcome channel in the Palm Mile Discord: what happens when your clip gets used, and where else to find Palm Mile" loading="lazy" decoding="async"></figure><figure class="dwin" style="--i:1"><span class="dtag">Post here</span><div class="dwin__bar"><i></i><i></i><i></i><span># submit-a-clip</span></div><img src="/assets/img/discord-submit-a-clip.f94adeda.webp" width="360" height="454" alt="The #submit-a-clip forum in the Palm Mile Discord with the pinned example post" loading="lazy" decoding="async"></figure><figure class="dwin" style="--i:2"><span class="dtag">Every payout listed</span><div class="dwin__bar"><i></i><i></i><i></i><span># hall-of-winners</span></div><img src="/assets/img/discord-hall-of-winners.761f9620.webp" width="360" height="454" alt="The #hall-of-winners channel in the Palm Mile Discord, explaining how winners confirm their prize" loading="lazy" decoding="async"></figure></div>
+</div>
+</section>
+
+<section class="sec" id="shorts" data-tone="#0a0216" aria-labelledby="shorts-h">
+<div class="wrap">
+<div class="sech">
+<div><p class="label label--neon" data-reveal>Shorts</p><h2 class="split" id="shorts-h">Two new Shorts <em class="hl">every day.</em></h2></div>
+<p data-reveal>The best moments as Shorts on TikTok, Instagram and Snapchat: two a day, one in each format.</p>
+</div>
+<ul class="formats">
+<li class="neon" data-reveal><span class="earn__n">Format 01</span><h3>Rankings</h3><p>Five GTA clips, ranked from five to one, in one Short of just over a minute.</p></li>
+<li class="neon" data-reveal><span class="earn__n">Format 02</span><h3>Story</h3><p>One bigger moment on its own, with a post-style card on top and a calm Palm Mile background behind it.</p></li>
+</ul>
+<div class="btn-row" data-reveal style="margin-top:1.75rem">
+<a class="btn btn--tt" href="https://www.tiktok.com/@palmmile" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
+<a class="btn btn--ig" href="https://www.instagram.com/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a>
+<a class="btn btn--sc" href="https://www.snapchat.com/add/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg>Snapchat</a>
+<a class="btn" href="/socials.html">All socials <span class="arrow" aria-hidden="true">&rarr;</span></a>
+</div>
+</div>
+</section>
+
+<section class="sec" id="credits" data-tone="#07010C" aria-labelledby="credits-h">
+<div class="wrap">
+<p class="label label--neon" data-reveal>Credits</p>
+<h2 class="split" id="credits-h">Every name is the player <em class="hl">who recorded that moment.</em></h2>
+<ul class="credit-links"><li data-reveal><a class="neon" href="/credits/video-1.html"><strong>Video 1</strong><span>459 creators · 1:32:53</span></a></li><li data-reveal><a class="neon" href="/credits/video-2.html"><strong>Video 2</strong><span>432 creators · 1:33:06</span></a></li><li data-reveal><a class="neon" href="/credits/video-3.html"><strong>Video 3</strong><span>425 creators · 1:07:58</span></a></li><li data-reveal><a class="neon" href="/credits/video-4.html"><strong>Video 4</strong><span>431 creators · 1:05:27</span></a></li></ul>
+</div>
+</section>
+
+<section class="sec" id="faq" data-tone="#0b0320" aria-labelledby="faq-h">
+<div class="wrap">
+<p class="label label--neon" data-reveal>Questions</p>
+<h2 class="split" id="faq-h">Quick <em class="hl">answers.</em></h2>
+<div class="faq"><details data-reveal><summary>Is Palm Mile free?</summary><div><p>Yes. Taking part costs nothing: no purchase, no subscription, no payment at any point.</p></div></details><details data-reveal><summary>Who records the clips?</summary><div><p>Players. Every clip in a Palm Mile video was recorded by a player, and that player is named in the video and in the public credit list.</p></div></details><details data-reveal><summary>How do I send in a clip?</summary><div><p>Join our Discord and post it in <code>#submit-a-clip</code>, together with the name you want on screen. The pinned example post shows how.</p></div></details><details data-reveal><summary>How do the monthly rewards work?</summary><div><p>Three ways, every month: the clip leaderboard, the inviter leaderboard and the monthly draw. The current amounts and thresholds are in <code>#how-it-works</code>.</p></div></details><details data-reveal><summary>Where can I watch the videos?</summary><div><p>On our <a href="https://www.youtube.com/@PalmMile" rel="noopener noreferrer">YouTube channel</a>. Short versions run on TikTok, Instagram and Snapchat.</p></div></details></div>
+<p data-reveal style="margin-top:1.5rem"><a href="/how-it-works.html">More questions and the full walkthrough &rarr;</a></p>
+</div>
+</section>
+
+
+<section class="close" id="closing" data-tone="#07010C" aria-labelledby="closing-h">
+<div class="wrap">
+<div class="close__panel wipe" data-reveal>
+<p class="label">Join the community</p>
+<h2 id="closing-h">Your clip could be in the next one.</h2>
+<a class="btn btn--discord btn--xl" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a>
+<p class="small">Free to join. No purchase, no subscription.</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot__banner" aria-hidden="true"><img src="/assets/img/hero-poster-1280.8ebde36b.webp" srcset="/assets/img/hero-poster-1280.8ebde36b.webp 1280w, /assets/img/hero-poster-2560.85b266a3.webp 2560w" sizes="100vw" width="2560" height="592" alt="" loading="lazy" decoding="async"></div>
+<div class="foot__grid">
+<div>
+<a class="foot__brand" href="/"><img src="/assets/img/logo-160.642049a2.webp" width="56" height="56" alt="" loading="lazy">Palm Mile</a>
+<p class="foot__about">Long GTA videos made from the best moments players have recorded. Every clip carries the player&rsquo;s name.</p>
+<a class="btn btn--discord btn--sm" href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a>
+</div>
+<div><h2>Explore</h2><ul>
+<li><a href="/#videos">Videos</a></li><li><a href="/how-it-works.html">How it works</a></li><li><a href="https://discord.gg/palmmile" target="_blank" rel="noopener">Submit your clip</a></li><li><a href="/credits/">Credits</a></li><li><a href="/credits/video-1.html">Video 1 credits</a></li><li><a href="/credits/video-2.html">Video 2 credits</a></li><li><a href="/credits/video-3.html">Video 3 credits</a></li><li><a href="/credits/video-4.html">Video 4 credits</a></li>
+</ul></div>
+<div><h2>Community</h2><ul>
+<li><a href="https://discord.gg/palmmile" rel="noopener noreferrer">Discord</a></li>
+<li><a href="https://www.youtube.com/@PalmMile" rel="noopener noreferrer">YouTube</a></li>
+<li><a href="https://www.tiktok.com/@palmmile" rel="noopener noreferrer">TikTok</a></li>
+<li><a href="https://www.instagram.com/palmmile" rel="noopener noreferrer">Instagram</a></li>
+<li><a href="https://www.snapchat.com/add/palmmile" rel="noopener noreferrer">Snapchat</a></li>
+<li><a href="https://x.com/PalmMile" rel="noopener noreferrer">X</a></li>
+<li><a href="https://www.reddit.com/user/PalmMile" rel="noopener noreferrer">Reddit</a></li>
+<li><a href="/socials.html">All socials</a></li>
+</ul></div>
+<div><h2>Legal</h2><ul>
+<li><a href="/rules.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/imprint.html">Imprint</a></li>
+<li><a href="mailto:contact@palmmile.com">contact@palmmile.com</a></li>
+<li><a href="mailto:copyright@palmmile.com">copyright@palmmile.com</a></li>
+</ul></div>
+</div>
+<div class="foot__legal"><p>Palm Mile is a fan community and is not connected with Rockstar Games.</p><p>&copy; 2026 Palm Mile</p></div>
+</div>
+</footer>
+<button class="totop" id="totop" type="button" aria-label="Back to top">&uarr;</button>
+<div class="dock" id="dock"><a class="btn btn--discord " href="https://discord.gg/palmmile" rel="noopener noreferrer"><svg viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>Join the Discord</a></div>
+<script src="/assets/js/gsap.min.92bb9a96.js" defer></script>
+<script src="/assets/js/ScrollTrigger.min.b0b14d67.js" defer></script>
+<script src="/assets/js/SplitText.min.419f7027.js" defer></script>
+<script src="/assets/js/lenis.min.80f53e77.js" defer></script>
+<script src="/assets/js/home.21c9d5fd.js" defer></script>
+<script src="/assets/js/site.8f40eead.js" defer></script>
 </body>
 </html>

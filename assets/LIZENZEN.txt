@@ -1,0 +1,30 @@
+Drittkomponenten dieser Website (alle selbst gehostet unter /assets, nichts wird von Fremdservern geladen)
+Stand: 29.10.2026. Quelle: npm-Pakete, einmal ueber cdn.jsdelivr.net/npm heruntergeladen, Pruefsumme verglichen.
+
+GSAP 3.15.0 (gsap.min.js), ScrollTrigger 3.15.0, SplitText 3.15.0
+  Quelle: https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/  (npm-Paket "gsap", Lizenzfeld: "Standard 'no charge' license")
+  Lizenz: GSAP Standard License, https://gsap.com/standard-license  (kostenlos, auch kommerziell; alle Plugins inklusive).
+  Die Lizenzhinweise in der Kopfzeile jeder Datei bleiben unveraendert. Einschraenkungen der Lizenz (u. a. kein Nachbau
+  eines mit Webflows visuellem Animationswerkzeug konkurrierenden Produkts) treffen auf diese Seite nicht zu.
+
+Lenis 1.3.27 (lenis.min.js, lenis.css)
+  Quelle: https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/   Lizenz: MIT, Copyright (c) 2024 darkroom.engineering
+  (Lizenztext siehe LENIS_MIT.txt)
+
+Archivo Variable (archivo-latin-wdth-normal.woff2)
+  Quelle: https://cdn.jsdelivr.net/npm/@fontsource-variable/archivo@5.3.0/files/archivo-latin-wdth-normal.woff2
+  Paket: @fontsource-variable/archivo 5.3.0, Lizenz: SIL Open Font License 1.1, Copyright 2020 The Archivo Project Authors
+  (https://github.com/Omnibus-Type/Archivo). Lizenztext siehe OFL-Archivo.txt. Die Schrift wird nicht verkauft und nicht
+  einzeln weitergegeben; Nutzung als Webfont ist laut OFL erlaubt.
+
+Montserrat Variable (montserrat-latin-wght-normal.woff2)
+  Quelle: https://cdn.jsdelivr.net/npm/@fontsource-variable/montserrat@5.3.0/files/montserrat-latin-wght-normal.woff2
+  Paket: @fontsource-variable/montserrat 5.3.0, Lizenz: SIL Open Font License 1.1 (Lizenztext siehe OFL-Montserrat.txt)
+
+Banner-Video (assets/video/banner.*): Ausschnitt aus Davids eigenem Abspann (Abspann_Epic.mp4), keine Drittkomponente.
+
+SHA-384 der ausgelieferten Bibliotheksdateien (Originalbytes):
+  gsap.min.js: XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly
+  ScrollTrigger.min.js: wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF
+  SplitText.min.js: SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr
+  lenis.min.js: R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU
