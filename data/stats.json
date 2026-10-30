@@ -1,0 +1,40 @@
+{
+ "videos": 4,
+ "clips": 2000,
+ "total_seconds": 19164,
+ "creators_min": 425,
+ "creators_max": 459,
+ "per_video": [
+  {
+   "n": 1,
+   "runtime": "1:32:53",
+   "clips": 500,
+   "creators": 459,
+   "title": "TOP 500 FUNNIEST GTA FAILS YOU HAVE TO WATCH BEFORE GTA 6"
+  },
+  {
+   "n": 2,
+   "runtime": "1:33:06",
+   "clips": 500,
+   "creators": 432,
+   "title": "TOP 500 FUNNIEST GTA FAILS YOU NEED TO WATCH BEFORE GTA 6"
+  },
+  {
+   "n": 3,
+   "runtime": "1:07:58",
+   "clips": 500,
+   "creators": 425,
+   "title": "TOP 500 EPIC MOMENTS YOU HAVE TO WATCH BEFORE GTA 6"
+  },
+  {
+   "n": 4,
+   "runtime": "1:05:27",
+   "clips": 500,
+   "creators": 431,
+   "title": "TOP 500 EPIC MOMENTS YOU NEED TO WATCH BEFORE GTA 6"
+  }
+ ],
+ "updated": "2026-10-29",
+ "hours": 5,
+ "minutes": 19
+}

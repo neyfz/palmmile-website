@@ -8,16 +8,25 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var top = $("#top-ui"), nav = $("#nav");
 
-  /* ---------- Banner-Video: erst nach dem Laden der Seite starten (schneller erster Eindruck), nie bei weniger Bewegung ---------- */
-  var bv = $("video[data-autoplay]");
-  if (bv && !reduce) {
-    var startVideo = function () {
-      bv.preload = "auto";
-      var pr = bv.play();
-      if (pr && pr.catch) pr.catch(function () {});
-    };
-    if (document.readyState === "complete") startVideo(); else window.addEventListener("load", startVideo);
+  /* ---------- Videos: Quelle nach Breite (Handy = eigener Ausschnitt), Start iOS-tauglich ---------- */
+  var mobile = window.matchMedia("(max-width: 760px)").matches;
+  function pickSrc(v, mob) {
+    if (v.dataset.ready) return;
+    var webm = mob && v.dataset.webmM ? v.dataset.webmM : v.dataset.webm, mp4 = mob && v.dataset.mp4M ? v.dataset.mp4M : v.dataset.mp4;
+    var canWebm = v.canPlayType && v.canPlayType('video/webm; codecs="vp9"');
+    v.src = canWebm ? webm : mp4;
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    v.dataset.ready = "1";
   }
+  function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  var bv = $("video.hero__v");
+  if (bv && !reduce) {
+    var startVideo = function () { pickSrc(bv, mobile); bv.preload = "auto"; bv.load(); tryPlay(bv); };
+    if (document.readyState === "complete") startVideo(); else window.addEventListener("load", startVideo);
+    var kick = function () { if (bv.paused) tryPlay(bv); };
+    window.addEventListener("touchstart", kick, { once: true, passive: true });
+    window.addEventListener("scroll", kick, { once: true, passive: true });
+  } else if (bv) { bv.removeAttribute("autoplay"); }
 
   /* ---------- Kopfleiste: Ankuendigung rollt weg, Header wird dunkel ---------- */
   var heroEnd = $("#hero-end");
@@ -175,9 +184,57 @@
       en.forEach(function (e) {
         var v = e.target;
         if (v.closest(".making.is-built")) return;
-        if (e.isIntersecting) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+        if (e.isIntersecting) { pickSrc(v, window.matchMedia("(max-width: 999px)").matches); v.preload = "auto"; tryPlay(v); } else v.pause();
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3, rootMargin: "200px 0px" });
     $$(".mchap__v").forEach(function (v) { io.observe(v); });
+    window.addEventListener("touchstart", function () { $$(".mchap__v").forEach(function (v) { if (v.dataset.ready && v.paused && v.getBoundingClientRect().top < innerHeight && v.getBoundingClientRect().bottom > 0) tryPlay(v); }); }, { passive: true });
+  } else {
+    $$(".mchap__v, .mframe__v").forEach(function (v) { if (v.dataset.poster) v.poster = v.dataset.poster; });
+  }
+})();
+
+/* ---------- Runde 6: antippbare Kacheln, Lightbox, Zahlen aus data/stats.json ---------- */
+(function () {
+  "use strict";
+  var $ = function (q, c) { return (c || document).querySelector(q); };
+  var $$ = function (q, c) { return Array.prototype.slice.call((c || document).querySelectorAll(q)); };
+
+  /* Kacheln */
+  $$(".flip").forEach(function (el) {
+    var toggle = function (force) {
+      var on = typeof force === "boolean" ? force : !el.classList.contains("is-open");
+      el.classList.toggle("is-open", on);
+      el.setAttribute("aria-expanded", on ? "true" : "false");
+    };
+    el.addEventListener("click", function (e) { if (e.target.closest("a")) return; toggle(); });
+    el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+
+  /* Lightbox */
+  var lb = $("#lb"), lbImg = $("#lb-img"), lbTag = $("#lb-tag"), lbX = $("#lb-x"), last = null;
+  function closeLb() { if (!lb) return; lb.classList.remove("is-on"); setTimeout(function () { lb.hidden = true; }, 320); document.documentElement.classList.remove("menu-open"); if (last) last.focus(); }
+  if (lb) {
+    $$(".dwin__open").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var img = $("img", btn); last = btn;
+        lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt; lbTag.textContent = btn.dataset.tag || "";
+        lb.hidden = false; void lb.offsetWidth; lb.classList.add("is-on"); document.documentElement.classList.add("menu-open"); lbX.focus();
+      });
+    });
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target === lbX) closeLb(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) closeLb(); });
+  }
+
+  /* Zahlen aus data/stats.json (pflegbar ohne Neubau); Zaehler lesen data-to */
+  var stats = $("[data-stats]");
+  if (stats && window.fetch) {
+    fetch(stats.getAttribute("data-stats"), { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!j) return;
+      $$("[data-stat]", stats).forEach(function (el) {
+        var k = el.getAttribute("data-stat"), v = j[k];
+        if (typeof v === "number" && String(v) !== el.getAttribute("data-to")) { el.setAttribute("data-to", v); if (!document.documentElement.classList.contains("anim")) el.textContent = v.toLocaleString("en-US"); }
+      });
+    }).catch(function () {});
   }
 })();
