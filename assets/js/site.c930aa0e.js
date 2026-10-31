@@ -180,4 +180,116 @@
     }, { threshold: 0.4 });
     $$(".mchap__v").forEach(function (v) { io.observe(v); });
   }
+
+  /* ===== Runde 8 ===== */
+  var tryPlay = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+
+  /* Hero: das Inline-Skript am Video startet es; Antippen startet es nachtraeglich (z. B. Stromsparmodus) */
+  var hv = $("#hero-video"), hb = $("#hero-banner");
+  if (hv && hb && !reduce) {
+    var kick = function () { if (hv.paused && hv.getAttribute("src")) tryPlay(hv); };
+    hb.addEventListener("touchend", kick, { passive: true });
+    hb.addEventListener("click", kick);
+  }
+
+  /* Fusszeilen-Banner: dieselbe Schleife wie oben, spielt nur solange sichtbar; Poster liegt darueber bis "playing" */
+  var fv = $(".foot__banner video");
+  if (fv && !reduce && "IntersectionObserver" in window) {
+    var fb = fv.parentNode;
+    fv.addEventListener("playing", function () { fb.classList.add("is-playing"); });
+    new IntersectionObserver(function (en) {
+      en.forEach(function (e) {
+        if (e.isIntersecting) {
+          if (!fv.getAttribute("src")) {
+            var w = window.innerWidth * (window.devicePixelRatio || 1);
+            fv.src = fv.getAttribute(window.matchMedia("(max-width: 760px)").matches ? (w > 800 ? "data-m2" : "data-m") : (w > 1700 ? "data-d2" : "data-d"));
+          }
+          fv.preload = "auto"; tryPlay(fv);
+        } else fv.pause();
+      });
+    }, { threshold: 0.3 }).observe(fv);
+  }
+
+  /* Discord-Kartenstapel: Antippen/Wischen = vordere Karte fliegt raus und legt sich nach hinten; nach der letzten wieder von vorn */
+  var lb = $("#lbox"), lbImg = $("#lbox-img"), lbX = $("#lbox-x"), lbFrom = null;
+  /* Runde 10: gefaecherter Stapel (Aussehen wie Runde 5/9). Klickverhalten nach Runde 4/5 (dort stellte sich die Karte unter der Maus
+     gerade und wurde groesser): ein Klick/Tippen auf eine hintere Karte holt sie weich nach vorn, sie richtet sich gerade aus und
+     waechst leicht, die anderen faechern sich dahinter neu auf. Ein Klick auf die vordere Karte hebt sie an und legt sie nach hinten.
+     "Next" und Wischen tun dasselbe. Nach der letzten Karte geht es von vorn los. Nur transform. */
+  var fan = $("#dfan");
+  if (fan) {
+    var cards = $$(".dwin", fan), n = cards.length, fi = $("#dfan-i"), busy = false;
+    var order = cards.slice();                 /* order[0] = ganz hinten ... order[n-1] = vorn */
+    var ROT = [-3, 1, 4, -1];
+    var place = function () {
+      var W = fan.clientWidth, mob = window.matchMedia("(max-width: 900px)").matches;
+      var cw = cards[0].offsetWidth || W * 0.48, ch = cards[0].offsetHeight || cw * 1.35;
+      var stepX = mob ? (W - cw) / Math.max(1, n - 1) : W * 0.26, stepY = mob ? 34 : fan.clientHeight * 0.10;
+      if (mob) fan.style.height = Math.round(ch + stepY * (n - 1) + 20) + "px"; else fan.style.height = "";
+      order.forEach(function (c, pos) {
+        var front = pos === n - 1;
+        c.style.setProperty("--x", Math.round(pos * stepX) + "px");
+        c.style.setProperty("--y", Math.round((mob ? 0 : fan.clientHeight * 0.02) + pos * stepY) + "px");
+        c.style.setProperty("--r", (front ? 0 : ROT[pos % ROT.length]) + "deg");
+        c.style.setProperty("--s", front ? "1.06" : "1");
+        c.style.setProperty("--z", String(1 + pos));
+        c.classList.toggle("is-front", front);
+        if (front) c.removeAttribute("aria-hidden"); else c.setAttribute("aria-hidden", "true");
+      });
+      if (fi) fi.textContent = String(cards.indexOf(order[n - 1]) + 1);
+    };
+    var bring = function (c) {                 /* R11: angeklickte Karte hebt sich gerade heraus und gleitet nach vorn */
+      if (busy || c === order[n - 1]) return;
+      busy = true; c.classList.add("is-pick");
+      setTimeout(function () {
+        order.splice(order.indexOf(c), 1); order.push(c); place();
+        c.classList.remove("is-pick");
+        setTimeout(function () { busy = false; }, reduce ? 0 : 350);
+      }, reduce ? 0 : 240);
+    };
+    var sendBack = function () {               /* vordere Karte anheben und nach hinten legen */
+      if (busy || n < 2) return;
+      var c = order[n - 1]; busy = true;
+      c.classList.add("is-lift");
+      setTimeout(function () {
+        c.classList.remove("is-lift");
+        order.pop(); order.unshift(c); place();
+        setTimeout(function () { busy = false; }, reduce ? 0 : 300);
+      }, reduce ? 0 : 260);
+    };
+    var sx = 0, sy = 0, down = null, moved = false;
+    fan.addEventListener("pointerdown", function (e) { var c = e.target.closest(".dwin"); if (!c) return; down = c; moved = false; sx = e.clientX; sy = e.clientY; });
+    fan.addEventListener("pointermove", function (e) { if (down && Math.abs(e.clientX - sx) > 12 && Math.abs(e.clientX - sx) > Math.abs(e.clientY - sy)) moved = true; });
+    fan.addEventListener("pointerup", function () {
+      if (!down) return; var c = down; down = null;
+      if (moved || c === order[n - 1]) sendBack(); else bring(c);
+    });
+    fan.addEventListener("pointercancel", function () { down = null; });
+    /* R11: ohne Knoepfe; mit der Tastatur blaettert Enter oder Leertaste auf dem Faecher weiter */
+    fan.setAttribute("tabindex", "0");
+    fan.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sendBack(); } });
+    place();
+    window.addEventListener("resize", place);
+    window.addEventListener("load", place);
+    cards.forEach(function (c) { var im = $("img", c); if (im && !im.complete) im.addEventListener("load", place, { once: true }); });
+  }
+
+  /* Runde 9 (Ladezeit): Poster der Videoschleifen erst kurz vor dem Sichtbereich laden */
+  var pv = $$("video[data-poster]");
+  if (pv.length) {
+    var setP = function (v) { if (!v.getAttribute("poster")) v.setAttribute("poster", v.getAttribute("data-poster")); };
+    if ("IntersectionObserver" in window) {
+      var pio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { setP(e.target); pio.unobserve(e.target); } }); }, { rootMargin: "900px 0px" });
+      pv.forEach(function (v) { pio.observe(v); });
+    } else pv.forEach(setP);
+  }
+  if (lb && lbX) {
+    var closeLb = function () { if (lb.hidden) return; lb.hidden = true; root.classList.remove("lbox-open"); if (lbFrom) lbFrom.focus(); };
+    lbX.addEventListener("click", closeLb);
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lbox__in")) closeLb(); });
+    document.addEventListener("keydown", function (e) {
+      if (lb.hidden) return;
+      if (e.key === "Escape") closeLb(); else if (e.key === "Tab") { e.preventDefault(); lbX.focus(); }
+    });
+  }
 })();

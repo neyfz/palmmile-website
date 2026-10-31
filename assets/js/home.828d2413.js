@@ -79,7 +79,7 @@
     gsap.to($$("[data-hero]"), { opacity: 1, duration: 0.8, stagger: 0.08, ease: "none" });
     ScrollTrigger.batch("[data-reveal]", {
       start: "top 92%", once: true,
-      onEnter: function (batch) { gsap.to(batch, { opacity: 1, duration: 0.7, stagger: 0.05, ease: "none", overwrite: "auto" }); }
+      onEnter: function (batch) { gsap.to(batch, { opacity: 1, duration: 0.7, stagger: Math.min(0.05, 0.4 / Math.max(1, batch.length)), ease: "none", overwrite: "auto" }); }
     });
     counters(1.0);
     tones(0.8);
@@ -106,6 +106,13 @@
       gsap.to($$("[data-hero]", hero), { opacity: 1, y: 0, duration: 1, stagger: 0.1, delay: 0.55, ease: EASE });
     }
 
+    /* Runde 10: das farbige Wort laedt sich von links auf, dann laeuft einmal ein Lichtschimmer durch */
+    var hl = function (h) {
+      $$("em.hl", h).forEach(function (em) {
+        gsap.fromTo(em, { clipPath: "inset(-10% 100% -10% 0%)" }, { clipPath: "inset(-10% 0% -10% 0%)", duration: 0.9, delay: 0.35, ease: "power2.inOut" });
+        /* (Lichtschimmer verworfen: erschien als heller Kasten ueber dem Wort) */
+      });
+    };
     /* Ueberschriften: Zeile fuer Zeile aus einer Maske (Hero beim Laden, sonst beim Scrollen) */
     $$(".split").forEach(function (h) {
       if (!hasSplit) { gsap.set(h, { visibility: "visible" }); return; }
@@ -116,18 +123,85 @@
           gsap.set(h, { visibility: "visible" });
           return gsap.from(self.lines, inHero
             ? { yPercent: 115, duration: 1.1, stagger: 0.12, ease: EASE, delay: 0.25 }
-            : { yPercent: 115, duration: 1, stagger: 0.1, ease: EASE, scrollTrigger: { trigger: h, start: "top 88%", once: true } });
+            : { yPercent: 115, duration: 1, stagger: 0.1, ease: EASE, scrollTrigger: { trigger: h, start: "top 88%", once: true,
+                onEnter: function () { hl(h); } } });
         }
       });
     });
 
-    /* Karten und Absaetze: gestaffelt von unten */
+    /* Runde 10: jeder Abschnitt baut sich sichtbar auf. Karten: Karte erscheint, ihr Rahmen zeichnet sich als Linie (CSS, clip-path),
+       dann gleitet der Inhalt gestaffelt hoch. Besondere Gruppen: Rewards-Wege fahren von links ein, FAQ-Zeilen gleiten von links,
+       Zahlen-Kaestchen laden einen Balken, Credit-Karten blenden die Namen nacheinander ein, Leaderboard-Balken wachsen auf ihren Wert.
+       Was beim Sprung schon ueber dem Bildschirm liegt, steht sofort (Fehler aus R9). Nur transform, opacity, clip-path. */
+    var isCard = function (el) { return el.classList.contains("neon"); };
+    var showNow = function (el) {
+      gsap.set(el, { opacity: 1, x: 0, y: 0, scale: 1 }); el.classList.add("is-draw");
+      gsap.set($$(".roleicon, .stat__load, .mf__bar i, .ccard__names li, .ccard__media img", el), { clearProps: "transform,opacity" });
+      gsap.set(el.children, { clearProps: "transform,opacity" });
+    };
+    var build = function (el, d) {
+      if (el.matches("details")) { gsap.fromTo(el, { opacity: 0, x: -48, y: 0 }, { opacity: 1, x: 0, duration: 0.7, delay: d, ease: EASE }); return; }
+      if (!isCard(el)) { gsap.to(el, { opacity: 1, y: 0, scale: 1, duration: 0.9, delay: d, ease: EASE, overwrite: "auto" }); return; }
+      var fromLeft = !!el.closest(".earn");
+      gsap.fromTo(el, fromLeft ? { opacity: 0, x: -70, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.97 },
+        { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.7, delay: d, ease: EASE, overwrite: "auto" });
+      setTimeout(function () { el.classList.add("is-draw"); }, d * 1000 + 120);
+      var kids = Array.prototype.slice.call(el.children).filter(function (k) {
+        return !k.classList.contains("step__glow") && !k.classList.contains("ccard__media") && !k.classList.contains("stat__load"); });
+      gsap.fromTo(kids, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, delay: d + 0.35, ease: EASE });
+      var med = $(".ccard__media img", el);
+      if (med) gsap.fromTo(med, { opacity: 0.3, scale: 1.15 }, { opacity: 1, scale: 1, duration: 1.1, delay: d + 0.1, ease: EASE });
+      var names = $$(".ccard__names li", el);
+      if (names.length) gsap.fromTo(names, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, stagger: 0.14, delay: d + 0.7, ease: EASE });
+      var load = $(".stat__load", el);
+      if (load) gsap.fromTo(load, { scaleX: 0 }, { scaleX: 1, duration: 1.2, delay: d + 0.25, ease: "power2.out" });
+      var bars = $$(".mf__bar i", el);
+      if (bars.length) gsap.from(bars, { scaleX: 0, duration: 1.1, stagger: 0.12, delay: d + 0.5, ease: "power3.out" });
+      var ic = $$(".roleicon", el);
+      if (ic.length) gsap.to(ic, { opacity: 1, y: 0, scale: 1, duration: 0.55, stagger: 0.12, delay: d + 0.6, ease: "back.out(2.2)" });
+    };
+    /* Zahlen-Kaestchen: duenner Ladebalken unter jeder Zahl */
+    $$(".stat").forEach(function (st) { if (!$(".stat__load", st)) { var b = document.createElement("span"); b.className = "stat__load"; b.setAttribute("aria-hidden", "true"); st.appendChild(b); } });
     ScrollTrigger.batch("[data-reveal]", {
       start: "top 90%", once: true,
-      onEnter: function (batch) { gsap.to(batch, { opacity: 1, y: 0, duration: 1, stagger: 0.09, ease: EASE, overwrite: "auto" }); }
+      onEnter: function (batch) {
+        var above = batch.filter(function (el) { return el.getBoundingClientRect().bottom < 0; });
+        var now = batch.filter(function (el) { return above.indexOf(el) < 0; });
+        above.forEach(showNow);
+        var step = Math.min(0.14, 0.7 / Math.max(1, now.length));
+        now.forEach(function (el, i) { build(el, i * step); });
+      }
+    });
+    /* Sicherheitsnetz: nichts bleibt unsichtbar haengen (nach 2 s im Bild wird alles gezeigt) */
+    setInterval(function () {
+      $$("[data-reveal]").forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < innerHeight && r.bottom > 0 && +getComputedStyle(el).opacity < 0.05 && !el.__late)
+          el.__late = setTimeout(function () { el.__late = 0; if (+getComputedStyle(el).opacity < 0.05) showNow(el); }, 2000);
+      });
+    }, 1000);
+
+    /* Three steps (R11): keine Ladelinie mehr; jede Karte leuchtet einmal auf, wenn sie ins Bild kommt */
+    $$(".steps .step").forEach(function (st) {
+      if (!$(".step__glow", st)) { var g = document.createElement("span"); g.className = "step__glow"; g.setAttribute("aria-hidden", "true"); st.insertBefore(g, st.firstChild); }
+      ScrollTrigger.create({ trigger: st, start: "top 75%", once: true, onEnter: function () { setTimeout(function () { st.classList.add("is-lit"); }, 500); } });
     });
 
-    counters(1.6);
+    /* Rewards (R11): das Leaderboard-Bild blendet ein wie die anderen Karten (kein Scan mehr) */
+
+    /* Videokarten: Thumbnails hellen auf und zoomen leicht ein (dazu die Bildmaske von unten, R5) */
+    $$(".vcard__media img").forEach(function (im) {
+      gsap.fromTo(im, { opacity: 0.35, scale: 1.18 }, { opacity: 1, scale: 1, duration: 1.4, ease: EASE, scrollTrigger: { trigger: im, start: "top 90%", once: true } });
+    });
+
+    /* R11: Fusszeilen-Banner wieder genau wie Runde 9 (die R10-Parallaxe vergroesserte und verschob den Ausschnitt) */
+
+    /* Runde 9: echte Bilder hellen beim Hineinscrollen auf (40 % -> 100 %, 108 % -> 100 %) */
+    $$(".mchap__fig").forEach(function (el) {
+      gsap.fromTo(el, { opacity: 0.4, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.2, ease: EASE, scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+    });
+
+    counters(1.2);   /* Runde 9: Zaehler 1,2 s */
     tones(1.4);
     making(true);
 
@@ -157,10 +231,7 @@
       gsap.fromTo(num, { "--fill": "0%" }, { "--fill": "100%", ease: "none", scrollTrigger: { trigger: num, start: "top 88%", end: "top 45%", scrub: 0.6 } });
     });
 
-    /* Discord-Stapel: die Fenster faechern beim Hineinscrollen auf */
-    $$(".dwin").forEach(function (el, i) {
-      gsap.from(el, { y: 80 + i * 40, opacity: 0, duration: 1.1, delay: i * 0.12, ease: EASE, scrollTrigger: { trigger: ".dstack", start: "top 85%", once: true } });
-    });
+    /* Discord-Stapel: Runde 9 setzt die Lage der Karten in site.js (transform); der Stapel erscheint als Ganzes mit [data-reveal] */
     /* (Parallax per data-speed, falls genutzt) */
     $$("[data-speed]").forEach(function (el) {
       var sp = parseFloat(el.getAttribute("data-speed")) || 0;
@@ -182,6 +253,10 @@
       });
     }
     ScrollTrigger.refresh();
+    /* Runde 9: nachgeladene Bilder verschieben die Seite; Ausloeser danach neu messen, damit nichts unsichtbar bleibt */
+    var rt = 0, again = function () { clearTimeout(rt); rt = setTimeout(function () { ScrollTrigger.refresh(); }, 150); };
+    $$("img[loading=lazy]").forEach(function (im) { if (!im.complete) im.addEventListener("load", again, { once: true }); });
+    window.addEventListener("load", again);
   }
 
   var go = function () {
