@@ -170,15 +170,35 @@
   }
 
   /* ---------- Videoschleifen (How a video is made, Listenform): spielen nur, solange sie sichtbar sind ---------- */
+  /* R12d (07.11.): sperrt das Handy Videos (iOS-Stromsparmodus), laufen die Kapitel-Clips als animierte Bilder; sie laden schon,
+     bevor die Karte ins Bild kommt, damit kein Standbild stehen bleibt */
+  var gesperrt = false;
+  var phoneK = window.matchMedia("(max-width: 860px)").matches;
+  var kapBild = function (v) {
+    if (v.__bild || !v.getAttribute("data-anim")) return;
+    v.__bild = 1;
+    var im = document.createElement("img");
+    im.className = "mchap__anim"; im.alt = ""; im.setAttribute("aria-hidden", "true"); im.decoding = "async";
+    im.src = v.getAttribute("data-anim");
+    v.parentNode.appendChild(im);
+  };
   if (!reduce && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (en) {
       en.forEach(function (e) {
         var v = e.target;
         if (v.closest(".making.is-built")) return;
-        if (e.isIntersecting) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+        if (e.isIntersecting) {
+          if (gesperrt && phoneK) { kapBild(v); return; }
+          v.preload = "auto"; var p = v.play();
+          if (p && p.catch) p.catch(function (er) { if (er && er.name === "NotAllowedError" && phoneK) { gesperrt = true; kapBild(v); } });
+        } else v.pause();
       });
     }, { threshold: 0.4 });
-    $$(".mchap__v").forEach(function (v) { io.observe(v); });
+    /* Vorlauf: ist die Sperre bekannt, lädt das Bild eine Bildschirmhöhe vor der Karte */
+    var vor = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting && gesperrt && phoneK && !e.target.closest(".making.is-built")) kapBild(e.target); });
+    }, { rootMargin: "100% 0px 100% 0px" });
+    $$(".mchap__v").forEach(function (v) { io.observe(v); vor.observe(v); });
   }
 
   /* ===== Runde 8 ===== */
@@ -195,7 +215,7 @@
   };
   var tryPlay = function (v) {
     var p = v.play();
-    if (p && p.catch) p.catch(function (e) { if (e && e.name === "NotAllowedError") loopBild(v); });
+    if (p && p.catch) p.catch(function (e) { if (e && e.name === "NotAllowedError") { gesperrt = true; loopBild(v); } });
   };
   var hv0 = $("#hero-video");
   if (hv0 && !reduce && phoneW && hv0.getAttribute("src")) {

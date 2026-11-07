@@ -792,6 +792,8 @@ background:linear-gradient(100deg,transparent,rgba(255,255,255,.95) 50%,transpar
 .anim .making .mchap{opacity:0;transform:translateX(-20px)}
 }
 .hero__banner .bannerloop,.foot__banner .bannerloop{z-index:3}
+.mchap__fig{position:relative}
+.mchap__anim{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;z-index:2}
 html.lenis,
 html.lenis body {
 height: auto;
