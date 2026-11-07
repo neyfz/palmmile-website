@@ -207,7 +207,7 @@
           fv.preload = "auto"; tryPlay(fv);
         } else fv.pause();
       });
-    }, { threshold: 0.3 }).observe(fv);
+    }, { threshold: 0.3 }).observe(fb);  /* R12 07.11.: Banner beobachten, nicht das Video (am Handy ist das Video vor dem Laden zu klein, 0.3 wurde nie erreicht) */
   }
 
   /* Discord-Kartenstapel: Antippen/Wischen = vordere Karte fliegt raus und legt sich nach hinten; nach der letzten wieder von vorn */
