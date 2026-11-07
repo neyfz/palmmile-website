@@ -782,16 +782,16 @@ background:linear-gradient(100deg,transparent,rgba(255,255,255,.95) 50%,transpar
 .anim .hero [data-hero]{opacity:1;transform:none;animation:pmHeroIn .45s ease-out both}
 .anim .hero .split{visibility:visible}
 }
-@media (max-width:999px){
-.making.is-built .mscene{display:block}
-.making.is-built .mstage{position:sticky;top:calc(var(--nav-h) - 1px);z-index:2;padding:.75rem 0 .75rem;background:#10052a;box-shadow:0 14px 18px -4px #10052a}
-.making.is-built .mtl{gap:.5rem;margin-top:.6rem}
-.making.is-built .mtl li{font-size:.5625rem;letter-spacing:.12em}
-.making.is-built .mtext{padding:4vh 0 30vh}
-.making.is-built .mchap{min-height:48vh;padding-left:1.1rem}
-.making.is-built .mchap h3{font-size:1.6rem}
-.making.is-built .mchap p{font-size:1rem}
+@media (max-width:859px){
+.making .mtext{position:relative;padding-left:1.5rem}
+.making .mtext::before{content:"";position:absolute;left:5px;top:.75rem;bottom:.75rem;width:2px;border-radius:2px;background:rgba(243,240,255,.12)}
+.making .mline{position:absolute;left:5px;top:.75rem;width:2px;height:calc(100% - 1.5rem);border-radius:2px;background:linear-gradient(180deg,#c4a3ff,#ff8ac4);transform-origin:50% 0;transform:scaleY(0)}
+.making .mchap{position:relative}
+.making .mchap::before{content:"";position:absolute;left:calc(-1.5rem - 1px);top:1.65rem;width:14px;height:14px;border-radius:50%;background:#1a0d33;border:2px solid rgba(243,240,255,.28);transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+.making .mchap.is-lit::before{background:#ff8ac4;border-color:#ffd1ea;box-shadow:0 0 14px rgba(255,138,196,.7)}
+.anim .making .mchap{opacity:0;transform:translateX(-20px)}
 }
+.hero__banner .bannerloop,.foot__banner .bannerloop{z-index:3}
 html.lenis,
 html.lenis body {
 height: auto;

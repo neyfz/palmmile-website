@@ -55,7 +55,7 @@
      Jedes erreichte Kapitel wischt sein Video ueber die vorigen; die Kapitelleiste fuellt sich mit. */
   function making(full) {
     var sec = $(".making"), chaps = $$(".mchap");
-    if (!sec || !chaps.length || !full) return;
+    if (!sec || !chaps.length || !full || !window.matchMedia("(min-width: 1000px)").matches) return;
     sec.classList.add("is-built");
     var vids = $$(".mframe__v"), tl = $$(".mtl li"), cur = -1, live = false;
     var play = function (v) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
@@ -73,6 +73,18 @@
     ScrollTrigger.create({ trigger: sec, start: "top 80%", end: "bottom 20%",
       onToggle: function (self) { live = self.isActive; var v = vids[cur]; if (v) { if (live) play(v); else v.pause(); } } });
     set(0);
+  }
+
+  /* R12c (07.11.): Handy - die vier Schritte bauen sich nach unten auf: Linie zeichnet sich mit, jede Karte gleitet herein, ihr Punkt leuchtet */
+  function makingPhone() {
+    var list = $(".mtext"), chaps = $$(".mchap");
+    if (!list || !chaps.length || !window.matchMedia("(max-width: 859px)").matches) return;
+    var line = document.createElement("span"); line.className = "mline"; line.setAttribute("aria-hidden", "true"); list.appendChild(line);
+    gsap.to(line, { scaleY: 1, ease: "none", scrollTrigger: { trigger: list, start: "top 72%", end: "bottom 72%", scrub: 0.3 } });
+    chaps.forEach(function (c) {
+      gsap.to(c, { opacity: 1, x: 0, duration: 0.55, ease: EASE, scrollTrigger: { trigger: c, start: "top 88%", once: true } });
+      ScrollTrigger.create({ trigger: c, start: "top 72%", onEnter: function () { c.classList.add("is-lit"); }, onLeaveBack: function () { c.classList.remove("is-lit"); } });
+    });
   }
 
   /* ---------------- Sanfte Fassung ---------------- */
@@ -208,6 +220,7 @@
     counters(1.2);   /* Runde 9: Zaehler 1,2 s */
     tones(1.4);
     making(true);
+    makingPhone();
 
     /* Bild-Masken: Thumbnails, Discord-Fenster und Schlussflaeche werden von unten aufgedeckt */
     $$(".vcard__media, .wipe").forEach(function (el) {

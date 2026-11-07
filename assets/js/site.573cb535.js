@@ -182,7 +182,26 @@
   }
 
   /* ===== Runde 8 ===== */
-  var tryPlay = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+  /* R12c (07.11.): sperrt das Handy das Video (iOS-Stromsparmodus: play() wird abgelehnt), laeuft dieselbe Schleife als animiertes Bild */
+  var phoneW = window.matchMedia("(max-width: 760px)").matches;
+  var loopBild = function (v) {
+    if (!phoneW || v.__bild || !v.getAttribute("data-anim")) return;
+    v.__bild = 1;
+    var im = document.createElement("img");
+    im.className = "bannerloop"; im.alt = ""; im.setAttribute("aria-hidden", "true"); im.decoding = "async";
+    im.addEventListener("load", function () { v.parentNode.classList.add("is-playing"); });
+    im.src = v.getAttribute("data-anim");
+    v.parentNode.appendChild(im);
+  };
+  var tryPlay = function (v) {
+    var p = v.play();
+    if (p && p.catch) p.catch(function (e) { if (e && e.name === "NotAllowedError") loopBild(v); });
+  };
+  var hv0 = $("#hero-video");
+  if (hv0 && !reduce && phoneW && hv0.getAttribute("src")) {
+    tryPlay(hv0);
+    setTimeout(function () { if (hv0.paused && hv0.readyState >= 2) loopBild(hv0); }, 2500);
+  }
 
   /* Hero: das Inline-Skript am Video startet es; Antippen startet es nachtraeglich (z. B. Stromsparmodus) */
   var hv = $("#hero-video"), hb = $("#hero-banner");
