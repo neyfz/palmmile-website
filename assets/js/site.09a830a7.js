@@ -192,6 +192,19 @@
     hb.addEventListener("click", kick);
   }
 
+  /* R12 (07.11.): iPhone im Stromsparmodus startet Videos nicht von selbst - jede Beruehrung irgendwo startet sichtbare, angehaltene Banner-Videos */
+  if (!reduce) {
+    var wecken = function () {
+      $$("#hero-video, .foot__banner video").forEach(function (v) {
+        if (!v.paused || !v.getAttribute("src")) return;
+        var r = v.parentNode.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) tryPlay(v);
+      });
+    };
+    document.addEventListener("touchend", wecken, { passive: true });
+    document.addEventListener("click", wecken);
+  }
+
   /* Fusszeilen-Banner: dieselbe Schleife wie oben, spielt nur solange sichtbar; Poster liegt darueber bis "playing" */
   var fv = $(".foot__banner video");
   if (fv && !reduce && "IntersectionObserver" in window) {

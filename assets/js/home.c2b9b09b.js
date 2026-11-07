@@ -20,6 +20,8 @@
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var navH = ($("#nav") || {}).offsetHeight || 68;
   var EASE = "power3.out";
+  /* R12 (07.11.): Handy - Text oben sofort (CSS), Einblendungen frueher und schneller, Kapitel-Aufbau auch am Handy */
+  var phone = window.matchMedia("(max-width: 760px)").matches;
 
   function counters(dur) {
     $$(".count").forEach(function (el) {
@@ -53,7 +55,7 @@
      Jedes erreichte Kapitel wischt sein Video ueber die vorigen; die Kapitelleiste fuellt sich mit. */
   function making(full) {
     var sec = $(".making"), chaps = $$(".mchap");
-    if (!sec || !chaps.length || !full || !window.matchMedia("(min-width: 1000px)").matches) return;
+    if (!sec || !chaps.length || !full) return;
     sec.classList.add("is-built");
     var vids = $$(".mframe__v"), tl = $$(".mtl li"), cur = -1, live = false;
     var play = function (v) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
@@ -88,6 +90,7 @@
 
   /* ---------------- Volle Fassung ---------------- */
   function full() {
+    if (phone) gsap.globalTimeline.timeScale(1.7);
     if (window.Lenis) {
       var lenis = new Lenis({ anchors: { offset: -navH }, lerp: 0.1 });
       window.__lenis = lenis;
@@ -103,7 +106,7 @@
       /* Parallax: Banner laeuft beim Scrollen langsamer als der Inhalt */
       gsap.to(media, { yPercent: 18, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
       gsap.to(".hero__ground", { y: -40, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-      gsap.to($$("[data-hero]", hero), { opacity: 1, y: 0, duration: 1, stagger: 0.1, delay: 0.55, ease: EASE });
+      if (!phone) gsap.to($$("[data-hero]", hero), { opacity: 1, y: 0, duration: 1, stagger: 0.1, delay: 0.55, ease: EASE });
     }
 
     /* Runde 10: das farbige Wort laedt sich von links auf, dann laeuft einmal ein Lichtschimmer durch */
@@ -117,6 +120,7 @@
     $$(".split").forEach(function (h) {
       if (!hasSplit) { gsap.set(h, { visibility: "visible" }); return; }
       var inHero = !!h.closest(".hero");
+      if (inHero && phone) { gsap.set(h, { visibility: "visible" }); return; }
       SplitText.create(h, {
         type: "lines", mask: "lines", autoSplit: true,
         onSplit: function (self) {
@@ -163,7 +167,7 @@
     /* Zahlen-Kaestchen: duenner Ladebalken unter jeder Zahl */
     $$(".stat").forEach(function (st) { if (!$(".stat__load", st)) { var b = document.createElement("span"); b.className = "stat__load"; b.setAttribute("aria-hidden", "true"); st.appendChild(b); } });
     ScrollTrigger.batch("[data-reveal]", {
-      start: "top 90%", once: true,
+      start: phone ? "top 102%" : "top 90%", once: true,
       onEnter: function (batch) {
         var above = batch.filter(function (el) { return el.getBoundingClientRect().bottom < 0; });
         var now = batch.filter(function (el) { return above.indexOf(el) < 0; });
