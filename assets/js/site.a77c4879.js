@@ -335,6 +335,115 @@
       pv.forEach(function (v) { pio.observe(v); });
     } else pv.forEach(setP);
   }
+  /* Runde EP (24.11.): Intro der neuesten Episode in der Karte "Latest episode". Laedt erst kurz vor dem Sichtbereich, spielt nur
+     solange sichtbar; das Thumbnail liegt darueber, bis das Video wirklich laeuft ("playing"). iPhone/Handy: MP4 (kleine Fassung).
+     Lehnt das Geraet Videos ab (iOS-Stromsparmodus, NotAllowedError), laeuft dieselbe Schleife als animiertes WebP. */
+  var ev = $(".epfeat__v");
+  if (ev && !reduce && "IntersectionObserver" in window) {
+    var em = ev.parentNode;
+    var mobE = window.matchMedia("(max-width: 760px)").matches;
+    var introBild = function () {
+      if (ev.__bild) return;
+      ev.__bild = 1;
+      var im = document.createElement("img");
+      im.className = "introloop"; im.alt = ""; im.setAttribute("aria-hidden", "true"); im.decoding = "async";
+      im.addEventListener("load", function () { em.classList.add("is-playing"); });
+      im.src = ev.getAttribute("data-anim");
+      em.appendChild(im);
+    };
+    var introLaden = function () {
+      if (ev.getAttribute("src") || ev.__quelle) return;
+      ev.__quelle = 1;
+      var webm = ev.canPlayType && ev.canPlayType('video/webm; codecs="vp9"');
+      ev.src = ev.getAttribute(mobE ? "data-m" : (webm ? "data-dw" : "data-d"));   /* Handy immer MP4 (Regel iPhone) */
+    };
+    /* 25.11. (David): Intro mit Ton. Browser erlauben Ton erst nach einer Nutzeraktion: das Intro startet stumm; beim ersten
+       Klick/Tippen/Tastendruck irgendwo auf der Seite kommt der Ton (0,5 s eingeblendet), solange die Karte sichtbar ist.
+       Scrollt die Karte weg, haelt das Intro an (Ton weg); kommt sie zurueck, laeuft es mit Ton weiter. Der Lautsprecher-Knopf
+       schaltet nur den Ton an/aus (kein Pause-Knopf). Im Ersatzbild (Stromsparmodus) gibt es keinen Ton und keinen Knopf. */
+    var tonKnopf = $("#epfeat-ton");
+    var tonWunsch = false, freigabe = false, sichtbar = false, rampe = 0;
+    var tonZeigen = function () {
+      if (!tonKnopf) return;
+      var an = !ev.muted;
+      tonKnopf.setAttribute("aria-pressed", an ? "true" : "false");
+      tonKnopf.setAttribute("aria-label", an ? "Turn the intro sound off" : "Turn the intro sound on");
+    };
+    var lautstaerke = function (ziel, fertig) {
+      cancelAnimationFrame(rampe);
+      var von = ev.volume, t0 = 0;
+      var schritt = function (t) {
+        if (!t0) t0 = t;
+        var k = Math.min(1, (t - t0) / 500);
+        try { ev.volume = von + (ziel - von) * k; } catch (e) {}
+        if (k < 1) rampe = requestAnimationFrame(schritt); else if (fertig) fertig();
+      };
+      rampe = requestAnimationFrame(schritt);
+    };
+    var tonAn = function () {   /* nur aus einer Nutzeraktion heraus oder nach erteilter Freigabe aufrufen */
+      if (ev.__bild || !ev.muted) return;
+      try { ev.volume = 0; } catch (e) {}
+      ev.muted = false;
+      tonZeigen();
+      if (ev.paused && sichtbar) {
+        var p = ev.play();
+        if (p && p.catch) p.catch(function () { ev.muted = true; tonZeigen(); var q = ev.play(); if (q && q.catch) q.catch(function () {}); });
+      }
+      lautstaerke(1);
+    };
+    var tonAus = function () {
+      lautstaerke(0, function () { ev.muted = true; try { ev.volume = 1; } catch (e) {} tonZeigen(); });
+      tonKnopf && tonKnopf.setAttribute("aria-pressed", "false");
+    };
+    var introSpielen = function () {
+      if (ev.__bild) return;
+      if (gesperrt) { introBild(); return; }
+      introLaden(); ev.preload = "auto";
+      if (tonWunsch && freigabe) { ev.muted = false; try { ev.volume = 0; } catch (e) {} }
+      var p = ev.play();
+      if (p && p.then) p.then(function () { if (!ev.muted) lautstaerke(1); tonZeigen(); });
+      if (p && p.catch) p.catch(function (er) {
+        if (er && er.name === "NotAllowedError") {
+          if (!ev.muted) {   /* Ton abgelehnt: stumm weiterlaufen lassen, Knopf zeigt "aus" */
+            ev.muted = true; tonZeigen();
+            var q = ev.play(); if (q && q.catch) q.catch(function () { gesperrt = true; introBild(); });
+          } else { gesperrt = true; introBild(); }
+        }
+      });
+    };
+    ev.addEventListener("playing", function () {
+      em.classList.add("is-playing");
+      if (tonKnopf && !ev.__bild) tonKnopf.hidden = false;
+    });
+    new IntersectionObserver(function (en) { if (en[0].isIntersecting) introLaden(); }, { rootMargin: "60% 0px 60% 0px" }).observe(em);
+    new IntersectionObserver(function (en) {
+      sichtbar = en[0].isIntersecting;
+      if (sichtbar) introSpielen(); else if (!ev.paused) ev.pause();
+    }, { threshold: 0.35 }).observe(em);
+    /* Erste Nutzeraktion irgendwo (nicht Scrollen): Ton freigeben und, wenn die Karte sichtbar ist, einschalten */
+    var ersteAktion = function (e) {
+      if (freigabe) return;
+      if (tonKnopf && e && e.target && tonKnopf.contains(e.target)) return;   /* der Knopf regelt sich selbst */
+      if (e && e.type === "keydown" && /^(Tab|Shift|Control|Alt|Meta)$/.test(e.key)) return;
+      freigabe = true; tonWunsch = true;
+      if (sichtbar && !ev.paused) tonAn();
+      ["pointerup", "keydown", "touchend"].forEach(function (t) { document.removeEventListener(t, ersteAktion, true); });
+    };
+    ["pointerup", "keydown", "touchend"].forEach(function (t) { document.addEventListener(t, ersteAktion, true); });
+    if (tonKnopf) tonKnopf.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      freigabe = true;
+      if (ev.muted) { tonWunsch = true; tonAn(); } else { tonWunsch = false; tonAus(); }
+    });
+    /* Beruehrung startet das Intro nachtraeglich, wenn es sichtbar und angehalten ist */
+    var introWecken = function () {
+      if (!ev.paused || ev.__bild) return;
+      var r = em.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) introSpielen();
+    };
+    document.addEventListener("touchend", introWecken, { passive: true });
+  }
+
   if (lb && lbX) {
     var closeLb = function () { if (lb.hidden) return; lb.hidden = true; root.classList.remove("lbox-open"); if (lbFrom) lbFrom.focus(); };
     lbX.addEventListener("click", closeLb);
